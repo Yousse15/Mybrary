@@ -8,6 +8,7 @@ const expressLayout=require('express-ejs-layouts')
 
 const indexRouter=require("./routes/index");
 const authorsRouter=require("./routes/authors");
+const booksRouter=require('./routes/books')
 
 const bodyParser=require("body-parser")
 
@@ -20,9 +21,8 @@ app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
 
 
 const mongoose=require('mongoose');
-const { urlencoded } = require('body-parser');
 mongoose.connect(process.env.DATABASE_URL,{
-    useNewUrlParser:true
+    useNewUrlParser:true,
 })
 const db=mongoose.connection;
 db.on('error',error=>console.error(error))
@@ -30,5 +30,6 @@ db.once('open',()=>console.log("connected to Mongoose"))
 
 app.use('/',indexRouter)
 app.use('/authors',authorsRouter)
+app.use('/books',booksRouter)
 
 app.listen(process.env.PORT || 3000)
