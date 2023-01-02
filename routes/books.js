@@ -6,10 +6,9 @@ const multer=require('multer')
 const path=require('path')
 const fs=require('fs')
 const uploadPath=path.join('public',Book.coverImageBasePath)
-const imageMimeTypes=['image/jpg','image/png','image/gif']
 
 const upload=multer({
-    dest:uploadPath,
+    dest:uploadPath
 })
 
 // All book route
@@ -65,9 +64,7 @@ function removeImageCover(filename){
 }
 async function renderNewPage(res,book,hasError=false){
     try{
-        const authors=await Author.find({ $where: function() {
-            return (this.name !=' ')
-         } })
+        const authors=await Author.find({})
         const params={
             authors:authors
             ,book:book
@@ -76,7 +73,7 @@ async function renderNewPage(res,book,hasError=false){
         res.render('books/new',params)
         
     }catch{
-        console('error rendering new page')
+        console.log('error rendering new page')
         res.redirect('books')
     }
 }
