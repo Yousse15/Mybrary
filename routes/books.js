@@ -2,20 +2,24 @@ const express=require('express')
 const router=express.Router()
 const Book=require('../models/book')
 const Author=require('../models/author')
-const multer=require('multer')
-const path=require('path')
-const fs=require('fs')
-const uploadPath=path.join('public',Book.coverImageBasePath)
-
-const upload=multer({
-    dest:uploadPath
-})
 
 // All book route
+
 router.get('/',async (req,res)=>{
-    const searchOptions={}
+    let query=Book.find()
+    if(req.query.title!=null&&req.query.title!=''){
+        query=query.regex('title',new RegExp(req.query.title,'i'))
+    }
+    if(req.query.publishedBefore!=null&&req.query.publishedBefore!=''){
+
+        query=query.lte('publishDate',req.query.publishedBefore)
+    }
+    if(req.query.publishedAfter!=null&&req.query.publishedAfter!=''){
+        
+        query=query.gte('publishDate',req.query.publishedAfter)
+    }
     try{
-        const books=await Book.find({})
+        const books=await query.exec()
         res.render('books/index',{
             books:books,
             searchOptions:req.query
@@ -23,7 +27,7 @@ router.get('/',async (req,res)=>{
     }
     catch{
         res.redirect('/')
-    }   
+    } 
 })
 // New book route
 
@@ -32,17 +36,18 @@ router.get('/new',async (req,res)=>{
 })
 
 // Create book route 
-router.post('/',upload.single('cover'),async (req,res)=>{
 
-    const filename=req.file!=null?req.file.filename:null
+router.post('/',async (req,res)=>{
+
     const book=new Book({
         title:req.body.title,
         author:req.body.author,
         publishDate:new Date(req.body.publishDate),
         pageCount:req.body.pageCount,
-        coverImageName:filename,
         description:req.body.description
     })
+    saveCover(book,req.body.cover)
+
     try{
         const newBook=await book.save();
         //res.redirect(`books/${newBook.id}`)
@@ -50,17 +55,19 @@ router.post('/',upload.single('cover'),async (req,res)=>{
 
     }catch{
         console.log('error saving')
-        if(book.coverImageName!=null){
-            removeImageCover(book.coverImageName)
-        }
         renderNewPage(res,book,true)
     }
 
 })
-function removeImageCover(filename){
-    fs.unlink(path.join(uploadPath,filename),(err=>{
-        if(err)console.error(err)
-    }))
+
+function saveCover(book,coverEncoded){
+    if(coverEncoded==null)return
+    const cover=JSON.parse(coverEncoded)
+    if(cover!=null){
+        book.coverImage=new Buffer.from(cover.data,'base64')
+        book.coverImageType=cover.type
+    }
+
 }
 async function renderNewPage(res,book,hasError=false){
     try{
