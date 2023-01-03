@@ -17,10 +17,6 @@
 </form>
 <br>
 
-<% books.forEach(book=>{ %>
-<div>
+<div> <% books.forEach(book=>{ %>
     <img height="180" width="130" src="<%= book.coverImagePath %>" alt="book cover">
-    <p><%= book.title %></p>
-</div>
-
-<% }) %> 
+<% }) %> </div>
