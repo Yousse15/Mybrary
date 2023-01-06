@@ -35,6 +35,69 @@ router.get('/new',async (req,res)=>{
      renderNewPage(res,new Book())
 })
 
+// Id
+
+router.get('/:id',async(req,res)=>{
+    try{
+        const book=await Book.findById(req.params.id).populate('author').exec()    
+        res.render('books/show',{
+            book:book
+        })
+    }catch{
+        res.redirect('/')
+    }
+})
+
+router.get('/:id/edit',async(req,res)=>{
+    try{
+        const authors=await Author.find()
+        const book=await Book.findById(req.params.id)
+        res.render('books/edit',{
+            book:book,
+            authors:authors
+        })
+    }catch{
+        res.redirect('/')
+    }
+})
+
+router.put('/:id',async(req,res)=>{
+    let book
+    try{
+        book = await Book.findById(req.params.id)
+        book.title=req.body.title
+        book.publishDate=new Date(req.body.publishDate)
+        book.pageCount=req.body.pageCount
+        book.author=req.body.author
+        book.description=req.body.description
+        await book.save()
+        res.redirect('/books/'+req.params.id)
+    }catch{
+        if(book==null){
+            res.redirect('/')
+        }
+        else{
+            res.redirect('/books/'+req.params.id)
+        }
+    }
+})
+
+router.delete('/:id',async (req,res)=>{
+    let book
+    try{
+        book=await Book.findById(req.params.id)
+        await book.remove()
+        res.redirect('/books')
+    }catch{
+        if(book==null){
+            res.redirect('/')
+        }
+        else{
+            res.redirect(`${req.params.id}`)
+        }
+    }
+})
+
 // Create book route 
 
 router.post('/',async (req,res)=>{
@@ -50,24 +113,23 @@ router.post('/',async (req,res)=>{
 
     try{
         const newBook=await book.save();
-        //res.redirect(`books/${newBook.id}`)
-        res.redirect('books')
-
+        res.redirect(`/books/${newBook.id}`)
     }catch{
-        console.log('error saving')
         renderNewPage(res,book,true)
     }
 
 })
 
 function saveCover(book,coverEncoded){
-    if(coverEncoded==null)return
-    const cover=JSON.parse(coverEncoded)
+    console.log(coverEncoded)
+    let cover
+    if(coverEncoded!=null){
+        cover=JSON.parse(coverEncoded)
+    }
     if(cover!=null){
         book.coverImage=new Buffer.from(cover.data,'base64')
         book.coverImageType=cover.type
     }
-
 }
 async function renderNewPage(res,book,hasError=false){
     try{
@@ -80,8 +142,10 @@ async function renderNewPage(res,book,hasError=false){
         res.render('books/new',params)
         
     }catch{
-        console.log('error rendering new page')
-        res.redirect('books')
+        res.redirect('/books')
     }
 }
+
+
+
 module.exports=router

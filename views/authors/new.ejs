@@ -1,10 +1,7 @@
-<h1>New Authors</h1>
-<fieldset>
-    <legend > add author</legend>
-    <form action="/authors" method="POST">
-        
-        <%-include('_form_field.ejs')%> 
-        <a href="/authors">Cancel</a>
-        <button type="submit">Confirm</button>
-    </form>
-</fieldset>
+<h1 class="page-header">Add Author</h1>
+
+<form action="/authors" method="POST">  
+    <%-include('_form_field.ejs')%> 
+    <a class="button" href="/authors">Cancel</a>
+    <button type="submit">Add</button>
+</form>

@@ -1,0 +1,135 @@
+@font-face {
+    font-family: 'MrsEavesSmartLig';
+    src: url('MrsEavesSmartLig-Bold.woff2') format('woff2'),
+        url('MrsEavesSmartLig-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesSmartLig';
+    src: url('MrsEavesSmartLig-Italic.woff2') format('woff2'),
+        url('MrsEavesSmartLig-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEaves';
+    src: url('MrsEaves-Bold.woff2') format('woff2'),
+        url('MrsEaves-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesSmartLigRoman';
+    src: url('MrsEavesSmartLigRoman.woff2') format('woff2'),
+        url('MrsEavesSmartLigRoman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesFractions';
+    src: url('MrsEavesFractions.woff2') format('woff2'),
+        url('MrsEavesFractions.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEaves';
+    src: url('MrsEaves-Italic.woff2') format('woff2'),
+        url('MrsEaves-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesJustLig';
+    src: url('MrsEavesJustLig-Bold.woff2') format('woff2'),
+        url('MrsEavesJustLig-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesJustLigRoman';
+    src: url('MrsEavesJustLigRoman.woff2') format('woff2'),
+        url('MrsEavesJustLigRoman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesJustLig';
+    src: url('MrsEavesJustLig-Italic.woff2') format('woff2'),
+        url('MrsEavesJustLig-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesRoman';
+    src: url('/fonts/MrsEavesRoman.woff2') format('woff2'),
+        url('/fonts/MrsEavesRoman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesPetiteCaps';
+    src: url('MrsEavesPetiteCaps.woff2') format('woff2'),
+        url('MrsEavesPetiteCaps.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesSmallCaps';
+    src: url('/fonts/MrsEavesSmallCaps.woff2') format('woff2'),
+        url('/fonts/MrsEavesSmallCaps.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesSmallCaps';
+    src: url('/fonts/MrsEavesSmallCaps.woff2') format('woff2'),
+        url('/fonts/MrsEavesSmallCaps.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesRoman';
+    src: url('/fonts/MrsEavesRoman.woff2') format('woff2'),
+        url('/fonts/MrsEavesRoman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrsEavesSmartLigRoman';
+    src: url('MrsEavesSmartLigRoman.woff2') format('woff2'),
+        url('MrsEavesSmartLigRoman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -5,19 +5,23 @@ if(process.env.NODE_ENV != 'production'){
 const express=require("express")
 const app=express();
 const expressLayout=require('express-ejs-layouts')
-
 const indexRouter=require("./routes/index");
 const authorsRouter=require("./routes/authors");
 const booksRouter=require('./routes/books')
 
 const bodyParser=require("body-parser")
+const overRideMethod=require('method-override')
+
 
 app.set("view engine","ejs")
 app.set("views",__dirname + '/views')
 app.set("layout","layouts/layout")
+
 app.use(expressLayout)
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
+
+app.use(overRideMethod('_method'))
 
 
 const mongoose=require('mongoose');
@@ -33,3 +37,5 @@ app.use('/authors',authorsRouter)
 app.use('/books',booksRouter)
 
 app.listen(process.env.PORT || 3000)
+
+

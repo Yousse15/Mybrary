@@ -1,1 +1,8 @@
-<%-include('_form-field.ejs')%> 
+<h2 class="page-header">Add book</h2>
+<form action="/books" method="post">
+    <%-include('_form-field.ejs')%> 
+    <a class="button" href="/books">Cancel</a>
+    <button type="submit">Add</button>
+</form>
+
+
